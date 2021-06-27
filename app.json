@@ -53,7 +53,7 @@
     },
     "MAXIMUM_DURATION": {
       "description": "Maximum duration of song to be played using /play or /dplay",
-      "value": "15",
+      "value": "3000",
       "required": false
     },
     "STREAM_URL": {
