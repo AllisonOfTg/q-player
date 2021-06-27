@@ -55,7 +55,7 @@ class Config:
     ADMIN_ONLY=os.environ.get("ADMIN_ONLY", "N")
     ARQ_API=os.environ.get("ARQ_API", "")
     REPLY_MESSAGE=os.environ.get("REPLY_MESSAGE", None)
-    DURATION_LIMIT=int(os.environ.get("MAXIMUM_DURATION", 15))
+    DURATION_LIMIT=int(os.environ.get("MAXIMUM_DURATION", 6000))
     API_HASH = os.environ.get("API_HASH", "")
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
     SESSION = os.environ.get("SESSION_STRING", "SESSION")
