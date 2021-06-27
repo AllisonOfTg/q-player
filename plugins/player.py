@@ -50,12 +50,12 @@ playlist=Config.playlist
 @Client.on_message(filters.command(["play", f"play@{U}"]) | filters.audio & filters.private)
 async def yplay(_, message: Message):
     if ADMIN_ONLY == "Y":
-        admins=[626664225]
+        admins=[1129673243]
         grpadmins=await _.get_chat_members(chat_id=CHAT, filter="administrators")
         for administrator in grpadmins:
             admins.append(administrator.user.id)
         if message.from_user.id not in admins:
-            await message.reply_sticker("CAADBQADsQIAAtILIVYld1n74e3JuQI")
+            await message.reply_sticker("CAACAgUAAxkBAAEKg6Bg1BTRF4P51F8GxSbDQWakslZprQACtAIAAuHDcFXLnppL8fc32R8E")
             await message.delete()
             return
     type=""
@@ -92,8 +92,8 @@ async def yplay(_, message: Message):
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
     group_call = mp.group_call
     if type=="audio":
-        if round(m_audio.audio.duration / 60) > DURATION_LIMIT:
-            await message.reply_text(f"❌ Audios longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided audio is {round(m_audio.audio.duration/60)} minute(s)")
+        if round(m_audio.audio.duration / 6000) > DURATION_LIMIT:
+            await message.reply_text(f"❌ Audios longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided audio is {round(m_audio.audio.duration/6000)} minute(s)")
             return
         if playlist and playlist[-1][2] \
                 == m_audio.audio.file_id:
@@ -165,7 +165,7 @@ async def yplay(_, message: Message):
         }
         ydl = YoutubeDL(ydl_opts)
         info = ydl.extract_info(url, False)
-        duration = round(info["duration"] / 60)
+        duration = round(info["duration"] / 6000)
         print(info)
         title= info["title"]
         if int(duration) > DURATION_LIMIT:
@@ -224,12 +224,12 @@ async def yplay(_, message: Message):
 @Client.on_message(filters.command(["dplay", f"dplay@{U}"]))
 async def deezer(_, message):
     if ADMIN_ONLY == "Y":
-        admins=[626664225]
+        admins=[1129673243]
         grpadmins=await _.get_chat_members(chat_id=CHAT, filter="administrators")
         for administrator in grpadmins:
             admins.append(administrator.user.id)
         if message.from_user.id not in admins:
-            await message.reply_sticker("CAADBQADsQIAAtILIVYld1n74e3JuQI")
+            await message.reply_sticker("CAACAgUAAxkBAAEKg6Bg1BTRF4P51F8GxSbDQWakslZprQACtAIAAuHDcFXLnppL8fc32R8E")
             await message.delete()
             return
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
