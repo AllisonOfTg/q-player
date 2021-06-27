@@ -29,7 +29,7 @@ REPLY_MESSAGE=Config.REPLY_MESSAGE
 buttons = [
     [
         InlineKeyboardButton('📜 Channel', url='https://t.me/MovieClubOfficiall'),
-        InlineKeyboardButton('Group ♻️', url='https://t.me/MOVIECLUB_CHAT)      
+        InlineKeyboardButton('Group ♻️', url='https://t.me/MOVIECLUB_CHAT')      
     ]
     ]
 @Client.on_inline_query()
