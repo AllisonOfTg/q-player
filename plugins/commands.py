@@ -22,13 +22,13 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 import signal
-from utils import USERNAME, FFMPEG_PROCESSES
+from utils import USERNAME, FFMPEG_PROCESSES, mp
 from config import Config
 import os
 import sys
 U=USERNAME
 CHAT=Config.CHAT
-
+msg=Config.msg
 HOME_TEXT = "<b>👋🏻Helo, [{}](tg://user?id={})\n\nIam MusicPlayer which plays music in Channels and Groups 24*7.\n\nI can even Stream Youtube Live in Your Voicechat.\n\nMade with ❤️ By @NickxFury!</b>"
 HELP = """
 
@@ -90,12 +90,14 @@ async def show_help(client, message):
         ]
     ]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_text(
+    if msg.get('help') is not None:
+        await msg['help'].delete()
+    msg['help'] = await message.reply_text(
         HELP,
         reply_markup=reply_markup
         )
     await message.delete()
-@Client.on_message(filters.command(["restart", f"restart@{U}"]) & filters.user(Config.ADMINS))
+@Client.on_message(filters.command(["restart", f"restart@{U}"]) & filters.user(Config.ADMINS) & (filters.chat(CHAT) | filters.private))
 async def restart(client, message):
     await message.reply_text("🔄 Restarting...")
     await message.delete()
@@ -103,4 +105,3 @@ async def restart(client, message):
     if process:
         process.send_signal(signal.SIGTERM) 
     os.execl(sys.executable, sys.executable, *sys.argv)
-    
